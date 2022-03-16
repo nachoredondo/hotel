@@ -1,0 +1,64 @@
+<html>
+    <head>
+        {% block head %} {% endblock %}
+        <style>
+           #main-title {
+               background-color:rgb(52, 206, 60); 
+               color:white; padding:7px; 
+               text-align:center
+            }
+
+            #headerbar {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                text-transform: uppercase;
+            }
+    
+            #headerbar button {
+                display: inline;
+                margin: 1px 15px;
+            }
+
+            #inner {
+                display: table; 
+                margin: 0 auto; 
+            }
+
+            #card {
+                margin-left: 100px;
+                margin-right: 100px;
+            }
+
+            #content {
+                display: table;
+                margin: 0 auto; 
+            }
+
+            .title {
+                margin-bottom:20px;
+            }
+
+        </style>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <div id="card">
+            <a href="{% url 'main' %}">
+                <h2 id="main-title">
+                    Prueba buscador de reservas - Chappsolutions
+                </h2>
+            </a>
+            {% include "commun/headerbar.html" %}
+
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <p style="text-align:right; margin-right: 150px; margin-top:50px;">Autor: Ignacio Redondo Arroyo</p>
+    </body>
+
+</html>

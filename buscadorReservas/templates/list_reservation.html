@@ -1,0 +1,59 @@
+{% extends "commun/base.html" %}
+
+{% block head %} 
+<title>Reservas</title>
+<style>
+    table {
+        background-color: rgb(83, 83, 83); 
+        margin:10px; 
+        width:600px; 
+        text-align: center;
+    }
+    
+    th {
+        background-color: rgb(155, 183, 219); 
+    }
+
+    tr {
+        background-color: rgb(178, 231, 245); 
+    }
+</style>
+{% endblock %}
+    
+
+{% block content %}
+<div style="margin:20px; width:600px;">
+    <h3 class="title" style="margin-left:7px">Reservas</h3>
+
+    {% if reservation %}
+        <h4 style="text-align:center;">Listado de reservas</h4>
+        <table class="table">
+            <th class="th">Huésped</th>
+            <th class="th">Fecha de entrada</th>
+            <th class="th">Fecha de salida</th>
+            <th class="th">Precio</th>
+            {% for res in reservation %}
+                <tr>
+                    <td>{{res.name}}</td>
+                    <td>{{res.entry_date|date:'d-m-Y'}}</td>
+                    <td>{{res.departure_date|date:'d-m-Y'}}</td>
+                    <td>{{res.price}} €</td>
+                </tr>    
+            {% endfor %}
+        </table>
+
+        <p style="margin-left: 20px; font-weight: bold;">Total: {{reservation|length}} reservas </p>
+    {% else %}
+        <p>Reserva no encontrado</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+        
+
+
+
+
+
+

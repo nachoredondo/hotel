@@ -1,0 +1,42 @@
+{% extends "commun/base.html" %}
+
+{% block head %} 
+<title>Comprar habitación</title>
+<style>
+    th{
+        margin:10px;
+        padding:10px;
+    }
+    tr {
+        margin:10px;
+        padding:10px;
+    }
+    td{
+        margin:10px;
+        padding:10px;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<h3 class="title">Reservar habitación {{capacity}}</h3>
+{% if form.errors %}
+    <p style="color: red;"> Por favor revisa los datos introducidos</p>
+{% endif %}
+
+<form action="" method="POST"> {% csrf_token %}
+    <table>
+        <p>Habitación {{capacity}}-{{name_room}} por {{price_total}}€</p>
+        <p>Con fecha de entrada {{entry_date|date:'d-m-Y'}} y fecha de salida {{departure_date|date:'d-m-Y'}}</p>
+        <input type="hidden" name="room" value="{{id}}">
+        <input type="hidden" name="entry_date" value="{{entry_date|date:'Y-m-d'}}">
+        <input type="hidden" name="departure_date" value="{{departure_date|date:'Y-m-d'}}">
+        <p>Nombre: <input style="margin-left:36px;" type="text" name="name"></p>
+        <p>Email: <input style="margin-left:51px;" type="text" name="mail"></p>
+        <p>Teléfono: <input style="margin-left:34px;" type="text" name="phone_number"></p>
+        <p>Nº huéspedes: <input type="text" name="n_guest"></p>
+    </table>
+    <input type="submit" value="Enviar">
+</form>
+{% endblock %}

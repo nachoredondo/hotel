@@ -1,0 +1,66 @@
+{% extends "commun/base.html" %}
+
+{% block head %} 
+<title>Reservas</title>
+<style>
+    .warning {
+        color: rgba(255, 0, 0, 0.849);
+    }
+
+    table {
+        background-color: rgb(83, 83, 83); 
+        width:600px; 
+        text-align: center;
+    }
+    
+    th {
+        background-color: rgb(155, 183, 219); 
+    }
+
+    tr {
+        background-color: rgb(178, 231, 245); 
+    }
+
+</style>
+{% endblock %}
+    
+
+{% block content %}
+<div style="margin:20px; width:600px;">
+    <h3 class="title">Reservas</h3>
+    <div style="margin:20px;">
+        <p>Fechas escogidas para crear reserva: </p> 
+        <ul>
+            <li>Fecha de entrada: {{entry_date|date:'d-m-Y'}}</li>
+            <li>Fecha de salida: {{departure_date|date:'d-m-Y'}}</li>
+        </ul>
+    </div>
+
+    {% if room %}
+        <h4 style="text-align:center;">Habitaciones disponibles</h4>
+        <table class="table">
+            <th class="th">Tipo habitación</th>
+            <th class="th">Nº habitación</th>
+            <th class="th">Precio total</th>
+            <th class="th"></th>
+            {% for r in room %}
+                <tr>
+                    <td>{{r.capacity}}</td>
+                    <td>{{r.name}}</td>
+                    <td>{{r.price}} €</td>
+                    <td>
+                        <a href="{% url 'create_reservation' r.id entry_date departure_date %}">
+                            <button class="btn btn-primary">Reservar</button>
+                        </a>
+                    </td>
+                </tr>    
+            {% endfor %}
+        </table>
+
+        <p style="margin-left: 20px; font-weight: bold;">Total: {{room|length}} habitaciones </p>
+    {% else %}
+        <p class="warning">Habitaciones no disponibles</p>
+    {% endif %}
+
+</div>
+{% endblock %}

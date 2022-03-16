@@ -1,0 +1,21 @@
+{% extends "commun/base.html" %}
+
+{% block head %} 
+<title>Crear reserva</title>
+{% endblock %}
+    
+
+{% block content %}
+<h3 class="title">Crear reserva</h3>  
+<p>Elegir fechas para ver disponibilidad</p>
+
+{% if err %}
+    <p style="color: red;"> {{err}} </p>
+{% endif %}
+
+<form action="" method="POST"> {% csrf_token %}
+    <p>Fecha entrada: <input type="date" name="entry_date" required></p>
+    <p>Fecha de salida: <input type="date" name="departure_date" required></p>
+    <input type="submit" value="Buscar">
+</form>
+{% endblock %}

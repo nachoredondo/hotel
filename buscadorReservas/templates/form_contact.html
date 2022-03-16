@@ -1,0 +1,36 @@
+{% extends "commun/base.html" %}
+
+{% block head %} 
+<title>Contactar</title>
+<style>
+    th{
+        margin:10px;
+        padding:10px;
+    }
+    tr {
+        margin:10px;
+        padding:10px;
+    }
+    td{
+        margin:10px;
+        padding:10px;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<h3 class="title">Contáctanos</h3>
+{% if form.errors %}
+    <p style="color: red;"> Por favor revisa los datos introducidos</p>
+{% endif %}
+
+<form action="" method="POST"> {% csrf_token %}
+    <table>
+        <p>Asunto: <input style="margin-left:9px;" type="text" name="asunto"></p>
+        <p>Email: <input style="margin-left:18px;" type="text" name="mail"></p>
+        <p>Mensaje: <textarea name="message" rows="15" cols="45"/></textarea></p>
+    </table>
+    <input type="submit" value="Enviar">
+</form>
+{% endblock %}
